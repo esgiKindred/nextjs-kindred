@@ -1,0 +1,14 @@
+.textarea {
+  background-color: var(--secondary) !important;
+  color: var(--secondary-dark) !important;
+  border-color: transparent !important;
+}
+
+.textarea:hover {
+  border-color: rgb(230 176 15 / 25%) !important;
+}
+
+.textarea:focus {
+  border-color: transparent !important;
+  box-shadow: 0 0 0 0.125em rgb(230 176 15 / 35%) !important;
+}
