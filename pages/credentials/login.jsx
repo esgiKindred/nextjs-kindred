@@ -1,62 +1,23 @@
+import {LayoutCredentials} from "../../components/layout-credentials/layout-credentials";
 import { Component } from "react";
-import { environment } from "../../environment";
-// import { ReactSession } from "react-client-session";
-// import { useNavigate } from "react-router-dom";
 import { Button, Form, Heading, Container } from "react-bulma-components";
 import styles from "./login.module.css";
-import {LayoutCredentials} from "../../components/layout-credentials/layout-credentials";
+import {getCsrfToken} from "next-auth/react";
 
-export default class Login extends Component {
-  constructor(props) {
-    super(props);
+export default function Login(csrfToken )  {
 
-    this.state = {
-      error: null,
-      isLoaded: false,
-      valueEmail: "",
-      valuePassword: "",
-    };
-    this.handleChangeEmail = this.handleChangeEmail.bind(this);
-    this.handleChangePassword = this.handleChangePassword.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-  }
-
-  handleChangeEmail(event) {
-    this.setState({ valueEmail: event.target.value });
-  }
-  handleChangePassword(event) {
-    this.setState({ valuePassword: event.target.value });
-  }
-
-  handleSubmit(event) {
-    this.checkLogin();
-    event.preventDefault();
-  }
-
-  handleCreateAccount(event) {
-    this.props.navigate("/register");
-    event.preventDefault();
-  }
-
-  render() {
-    const { error, isLoaded } = this.state;
-    if (error) {
-      return <div>Erreur : {error.message}</div>;
-    } else if (!isLoaded) {
-      return <div>Chargement…</div>;
-    } else {
       return (
           <Container className={styles.main}>
             <p className="login-title">Connexion</p>
-            <form id="login-form">
+            <form id="login-form" method="post" action="/api/auth/callback/credentials">
+              <input name="csrfToken" type="hidden" defaultValue={csrfToken} />
               <Form.Field>
                 <Form.Label>Email</Form.Label>
                 <Form.Control>
                   <Form.Input
-                    color="primary"
-                    type="email"
-                    value={this.state.valueEmail}
-                    onChange={this.handleChangeEmail}
+                      name="username"
+                      color="primary"
+                      type="text"
                   />
                 </Form.Control>
               </Form.Field>
@@ -65,10 +26,9 @@ export default class Login extends Component {
                 <Form.Label>Mot de passe</Form.Label>
                 <Form.Control>
                   <Form.Input
-                    color="primary"
-                    type="password"
-                    value={this.state.valuePassword}
-                    onChange={this.handleChangePassword}
+                      name="password"
+                      color="primary"
+                      type="password"
                   />
                 </Form.Control>
               </Form.Field>
@@ -78,17 +38,14 @@ export default class Login extends Component {
                   <Button
                     className="create-account"
                     type="button"
-                    onClick={this.handleCreateAccount}
-                    color="link"
-                  >
+                    color="link">
                     Créer un compte ici
                   </Button>
                 </Form.Control>
                 <Form.Control>
                   <Button
                     color="secondary"
-                    type="button"
-                    onClick={this.handleSubmit}
+                    type="submit"
                   >
                     Connexion
                   </Button>
@@ -97,69 +54,8 @@ export default class Login extends Component {
             </form>
           </Container>
       );
-    }
-  }
-
-  componentDidMount() {
-    this.setState({
-      isLoaded: true,
-    });
-  }
-
-  checkLogin() {
-    fetch(environment.api + "login_check", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-      },
-      mode: "cors",
-      cache: "default",
-      body: JSON.stringify({
-        username: this.state.valueEmail,
-        password: this.state.valuePassword,
-      }),
-    }).then((response) => {
-      response.json().then(
-        (result) => {
-          console.log(result);
-          if (result.token) {
-            alert(result.token);
-
-            const userInfo = parseJwt(result.token);
-            console.log(userInfo);
-            ReactSession.set("username", userInfo.username);
-            ReactSession.set("token", result.token);
-            ReactSession.set("roles", userInfo.roles);
-
-            this.props.navigate("/dashboard");
-          } else {
-            alert(result.message);
-          }
-        },
-        (error) => {
-          error.message += response.body;
-          this.setState({ error });
-        }
-      );
-    });
-  }
 }
 
-function parseJwt(token) {
-  const base64Url = token.split(".")[1];
-  const base64 = base64Url.replace(/-/g, "+").replace(/_/g, "/");
-  const jsonPayload = decodeURIComponent(
-    atob(base64)
-      .split("")
-      .map(function (c) {
-        return "%" + ("00" + c.charCodeAt(0).toString(16)).slice(-2);
-      })
-      .join("")
-  );
-
-  return JSON.parse(jsonPayload);
-}
 
 Login.getLayout = function getLayout(page) {
   return (
@@ -169,4 +65,12 @@ Login.getLayout = function getLayout(page) {
   )
 }
 
+
+export async function getServerSideProps(context) {
+    return {
+        props: {
+            csrfToken: await getCsrfToken(context),
+        },
+    }
+}
 
