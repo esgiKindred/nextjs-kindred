@@ -37,7 +37,7 @@ export default NextAuth({
                 //const user = {token : "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE2NTQ4MDg5MTUsImV4cCI6MTY1NDgxMjUxNSwicm9sZXMiOlsicGFyZW50IiwiUk9MRV9VU0VSIl0sInVzZXJuYW1lIjoidGNoaTJAaWNsb3VkLmNvbSJ9.myQOUKYmDQ9dATP502xsYLRGgStEt22BPNeoRqDlQtUmfwbo6VrSZgULskZeWdgvqGS7DjZR5Jg--PPz9jXLdmkqGVgaXq2Qf9PRb5f8Zz7Vs5HI0j2IIlEFrK26IxgBFa0oQYd9XI4_qimaXxTgDDqJL7gXaNoNByw3Gx5e8zYdVuJ1JxESVtCRlOGDZl7VinjXJ8VdXJ_vcqlkrq3a3EhLkK5J-gtkkgSox8DfBKZyx3s_4sa7GZ3v5rtO4ica6e1h0b7BNmci9BE37Y-miMfDClFafqZzUub94vzJDuDCMUrMbGWNUSxY1KLczAR8ADxtV5OfrlGpDG94p8zFiA"}
                 // If no error and we have user data, return it
                 if (res.ok && user) {
-                    return user
+                    return user;
                 }
                 // Return null if user data could not be retrieved
                 return null
@@ -46,26 +46,49 @@ export default NextAuth({
 
         })
     ],
+    //Custom sign in page
     // pages: {
-    //     signIn: '/credentials/login',
+    //      signIn: '/credentials/login',
     // },
-    // Callbacks configuration - we create a new JWT Next token with `access_token` (from Symfony).
-
+    //Callbacks configuration - we create a new JWT Next token with `access_token` (from Symfony).
     callbacks: {
         async jwt({ token, user}) {
             if (user) {
-                token = {access_token : user.token  // <-- add du token de l'API Symfony dans le token JWT (Next's) object
+                const symfonyDecodedToken = parseJwt(user.token);
+
+                user.email = symfonyDecodedToken.username
+                user.roles = symfonyDecodedToken.roles
+
+                token = {
+                    access_token : user.token,// <-- add du token de l'API Symfony dans le token JWT (Next's) object
+                    user : user
                 };
             }
             return token;
         },
         async session({ session, token }) {
-            return { ...session };
+            session.user = token.user;
+            return session;
         },
     },
     session :{
         strategy: "jwt",
-        maxAge: 30 * 24 * 60 * 60,// 30 days
+        maxAge:  30 * 60,// 30 minutes
     },
     secret: process.env.NEXTAUTH_SECRET,
 })
+
+function parseJwt(token) {
+    const base64Url = token.split(".")[1];
+    const base64 = base64Url.replace(/-/g, "+").replace(/_/g, "/");
+    const jsonPayload = decodeURIComponent(
+        atob(base64)
+            .split("")
+            .map(function (c) {
+                return "%" + ("00" + c.charCodeAt(0).toString(16)).slice(-2);
+            })
+            .join("")
+    );
+
+    return JSON.parse(jsonPayload);
+}

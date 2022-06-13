@@ -1,5 +1,4 @@
 import {LayoutCredentials} from "../../components/layout-credentials/layout-credentials";
-import { Component } from "react";
 import { Button, Form, Heading, Container } from "react-bulma-components";
 import styles from "./login.module.css";
 import {getCsrfToken} from "next-auth/react";

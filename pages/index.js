@@ -1,9 +1,8 @@
-import Head from 'next/head'
-import Image from 'next/image'
-import styles from '../styles/Home.module.css'
+
 import {LayoutHome} from "../components/layout-home/layout-home";
 import {Component} from "react";
 import {Button, Form} from "react-bulma-components";
+import {getSession, signIn} from "next-auth/react";
 
 export default class Dashboard extends Component {
     constructor(props) {
@@ -54,3 +53,4 @@ Dashboard.getLayout = function getLayout(page) {
         </LayoutHome>
     )
 }
+
