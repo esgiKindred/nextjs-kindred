@@ -3,6 +3,7 @@ import {Button, Form, Heading, Container, Notification} from "react-bulma-compon
 import styles from "./login.module.css";
 import {getCsrfToken} from "next-auth/react";
 import {useRouter} from "next/router";
+import Link from "next/link";
 
 
 export default function Login({csrfToken})  {
@@ -23,35 +24,40 @@ export default function Login({csrfToken})  {
                     name="csrfToken" type="hidden" defaultValue={csrfToken}
                 />
               <Form.Field>
-                <Form.Label>Email</Form.Label>
                 <Form.Control>
                   <Form.Input
                       name="username"
                       color="primary"
                       type="text"
+                      placeholder="Email"
                   />
                 </Form.Control>
               </Form.Field>
 
               <Form.Field>
-                <Form.Label>Mot de passe</Form.Label>
                 <Form.Control>
                   <Form.Input
                       name="password"
                       color="primary"
                       type="password"
+                      placeholder="Mot de passe"
                   />
                 </Form.Control>
               </Form.Field>
 
               <Form.Field kind="group">
                 <Form.Control>
-                  <Button
-                    className="create-account"
-                    type="button"
-                    color="link">
-                    Créer un compte ici
-                  </Button>
+
+                    <Link
+                        href={'/credentials/register'}
+                        passHref>
+                        <Button
+                            className="create-account"
+                            type="button"
+                            color="link">
+                            Créer un compte ici
+                        </Button>
+                    </Link>
                 </Form.Control>
                 <Form.Control>
                   <Button

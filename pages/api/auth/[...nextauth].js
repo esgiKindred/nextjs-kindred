@@ -1,5 +1,6 @@
 import NextAuth from "next-auth"
 import CredentialsProvider from "next-auth/providers/credentials"
+import {redirect} from "next/dist/server/api-utils";
 
 export default NextAuth({
     // Configure one or more authentication providers
@@ -70,6 +71,13 @@ export default NextAuth({
             session.user = token.user;
             return session;
         },
+        async redirect({ url, baseUrl }) {
+           if(url == baseUrl + "/credentials/register"){
+               return baseUrl
+           } else{
+               return url
+           }
+        }
     },
     session :{
         strategy: "jwt",
