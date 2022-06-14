@@ -1,7 +1,5 @@
 import {Component} from "react";
-import {environment} from "../environment";
 import {LayoutHome} from "../components/layout-home/layout-home";
-import Dashboard from "./index";
 
 export default class Users extends Component {
     constructor(props) {
@@ -71,3 +69,4 @@ Users.getLayout = function getLayout(page) {
         </LayoutHome>
     )
 }
+Users.auth = true

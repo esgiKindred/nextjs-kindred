@@ -2,26 +2,8 @@
 import {LayoutHome} from "../components/layout-home/layout-home";
 import {Component} from "react";
 import {Button, Form} from "react-bulma-components";
-import {getSession, signIn} from "next-auth/react";
-
-export default class Dashboard extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            error: null,
-            isLoaded: false,
-            items: [],
-        };
-    }
-
-    render() {
-        const { error, isLoaded, items } = this.state;
-        if (error) {
-            return <div>Erreur : {error.message}</div>;
-        } else if (!isLoaded) {
-            return <div>Chargement…</div>;
-        } else {
-            return (
+export default function Dashboard() {
+    return (
                 <div>
                     <h1>Dashboard</h1>
                     {/*<p>{ReactSession.get("roles")}</p>*/}
@@ -36,14 +18,6 @@ export default class Dashboard extends Component {
           <Select placeholder={"textarea"} /> */}
                 </div>
             );
-        }
-    }
-
-    componentDidMount() {
-        this.setState({
-            isLoaded: true,
-        });
-    }
 }
 
 Dashboard.getLayout = function getLayout(page) {
@@ -53,4 +27,6 @@ Dashboard.getLayout = function getLayout(page) {
         </LayoutHome>
     )
 }
+
+Dashboard.auth = true
 

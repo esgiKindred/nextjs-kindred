@@ -1,5 +1,6 @@
 import '../assets/styles/globals.css'
 import {getCsrfToken, getSession, SessionProvider, signIn, signOut, useSession} from "next-auth/react"
+import {withAuth} from "next-auth/middleware";
 
 
 export default function App({
@@ -11,8 +12,25 @@ export default function App({
 
   return (
       <SessionProvider session={session}>
-          {getLayout(<Component {...pageProps} />)}
+
+          {Component.auth ? (
+          <Auth>
+              {getLayout(<Component {...pageProps} />)}
+          </Auth>
+          ) : getLayout(<Component {...pageProps} />)
+          }
+
       </SessionProvider>
       )
 }
 
+function Auth({ children }) {
+    // if `{ required: true }` is supplied, `status` can only be "loading" or "authenticated"
+    const { status } = useSession({ required: true })
+
+    if (status === 'loading') {
+        return <div>Loading...</div>
+    }
+
+    return children
+}

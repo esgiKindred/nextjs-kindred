@@ -47,9 +47,9 @@ export default NextAuth({
         })
     ],
     //Custom sign in page
-    // pages: {
-    //      signIn: '/credentials/login',
-    // },
+     pages: {
+          signIn: '/credentials/login',
+     },
     //Callbacks configuration - we create a new JWT Next token with `access_token` (from Symfony).
     callbacks: {
         async jwt({ token, user}) {
