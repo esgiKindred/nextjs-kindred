@@ -5,7 +5,7 @@ import Dashboard from "./index";
 export default function Campaign(){
 
             return (
-                <h1>Bonjour, </h1>
+                <h1>Eampagnes </h1>
             )
 
 }

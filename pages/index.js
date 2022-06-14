@@ -1,13 +1,15 @@
 
 import {LayoutHome} from "../components/layout-home/layout-home";
-import {Component} from "react";
 import {Button, Form} from "react-bulma-components";
+import {useSession} from "next-auth/react";
 export default function Dashboard() {
+    const { data: session, status } = useSession()
+    console.log(session)
     return (
+
                 <div>
-                    <h1>Dashboard</h1>
-                    {/*<p>{ReactSession.get("roles")}</p>*/}
-                    {/*<p>{ReactSession.get("token")}</p>*/}
+                    <h1>Bienvenue {session.user.email} {session.user.roles[0]}</h1>
+
 
                     <Button color={"primary"}>Test</Button>
                     <Button color={"secondary"}>Test</Button>

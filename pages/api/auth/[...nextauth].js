@@ -60,6 +60,7 @@ export default NextAuth({
                 user.email = symfonyDecodedToken.username
                 user.roles = symfonyDecodedToken.roles
 
+
                 token = {
                     access_token : user.token,// <-- add du token de l'API Symfony dans le token JWT (Next's) object
                     user : user
