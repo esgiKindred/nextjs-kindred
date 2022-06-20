@@ -1,9 +1,58 @@
+@import "bulma/css/bulma.css";
+@import "/src/components/bouton/styles.css";
+@import "/src/components/input/styles.css";
+
+@font-face {
+  font-family: Blanka;
+  src: local("Blanka"), local("Blanka"), url(../public/fonts/Blanka-Regular.otf);
+  font-weight: normal;
+}
+
+:root {
+  --primary: #038c7f;
+  --primary-dark: #025959;
+  --secondary: #fcfaf6;
+  --secondary-dark: #daccb1;
+  --tertiary: #f2c12e;
+  --tertiary-dark: #e6b00f;
+  --quaternary: #f27d72;
+  --quaternary-dark: #ef6457;
+  --white: #ffffff;
+
+  --primary-gradient: linear-gradient(var(--primary), var(--primary-dark));
+  --tertiary-gradient: linear-gradient(var(--tertiary), var(--quaternary));
+}
+
+.App-Logo {
+  font-family: Blanka;
+  font-weight: 400;
+  font-size: 48px;
+  background: -webkit-linear-gradient(225deg, #038c7f 0%, #025959 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-left: 1rem;
+}
+.App-Header {
+  padding: 0.5rem;
+}
+.App-Header i {
+  font-size: 48px;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
 html,
 body {
   padding: 0;
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+}
+
+body {
+  background-color: var(--secondary);
 }
 
 a {
