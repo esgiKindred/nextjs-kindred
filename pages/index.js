@@ -8,7 +8,7 @@ export default function Dashboard() {
     return (
 
                 <div>
-                    <h1>Bienvenue {session.user.email} {session.user.roles[0]}</h1>
+                    <h1>Bienvenue {session.user.email} {session.user.roles[0]} {session.user.id}</h1>
 
 
                     <Button color={"primary"}>Test</Button>

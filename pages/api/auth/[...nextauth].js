@@ -59,6 +59,7 @@ export default NextAuth({
 
                 user.email = symfonyDecodedToken.username
                 user.roles = symfonyDecodedToken.roles
+                user.id = symfonyDecodedToken.id
 
 
                 token = {
