@@ -63,10 +63,6 @@ body {
   height: 100vh;
 }
 
-h1 {
-  color: var(--primary-dark);
-}
-
 /*Redefinition de Bulma*/
 
 input {
