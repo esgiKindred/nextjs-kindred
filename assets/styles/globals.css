@@ -70,17 +70,20 @@ h2 {
 
 /*Redefinition de Bulma*/
 
-input {
+input,
+textarea {
   background-color: var(--secondary) !important;
   color: var(--primary) !important;
   border-color: transparent !important;
 }
 
-input:hover {
+input:hover,
+textarea:hover {
   border-color: rgb(230 176 15 / 25%) !important;
 }
 
-input:focus {
+input:focus,
+textarea:focus {
   border-color: transparent !important;
   box-shadow: 0 0 0 0.125em rgb(230 176 15 / 35%) !important;
 }
