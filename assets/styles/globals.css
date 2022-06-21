@@ -63,6 +63,11 @@ body {
   height: 100vh;
 }
 
+h2 {
+  color: var(--primary-dark) !important;
+  font-weight: bold !important;
+}
+
 /*Redefinition de Bulma*/
 
 input {
