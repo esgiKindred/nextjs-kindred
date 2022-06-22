@@ -1,0 +1,34 @@
+.main {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: var(--white);
+  padding: 30px;
+  border-radius: 50px 50px 0 0;
+  text-align: center;
+}
+
+.children > h3 {
+  color: var(--quaternary);
+}
+
+.children_block {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  align-items: center;
+}
+
+.children_block > figure {
+  margin-bottom: 0 !important;
+}
+
+.buttons {
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  grid-gap: 30px;
+}
+
+.buttons > button {
+  width: 100%;
+}
