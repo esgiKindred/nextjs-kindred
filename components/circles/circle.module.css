@@ -1,0 +1,28 @@
+.circleImg {
+  background: var(--quaternary);
+  border-radius: 50%;
+  width: 80px;
+  height: 80px;
+  margin: 10px;
+  position: absolute;
+  z-index: 3;
+}
+
+.circleSecondary {
+  background: var(--secondary);
+  border-radius: 50%;
+  width: 90px;
+  height: 90px;
+  margin: 5px;
+  position: absolute;
+  z-index: 2;
+}
+
+.circleTertiary {
+  background: var(--tertiary);
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
+  position: relative;
+  z-index: 1;
+}
