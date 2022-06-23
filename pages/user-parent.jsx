@@ -27,17 +27,21 @@ export default function Contract() {
         </Block>
       </Block>
       <Block className={styles.buttons}>
-        <Link href={"/modify-parent"} passHref>
+        <Link href={"/add-child"} passHref>
           <Button
-            className={styles.modify_parent}
+            className={styles.add_children}
             type="button"
             color="secondary"
           >
             Ajouter un compte enfant
           </Button>
         </Link>
-        <Link href={"/add-children"} passHref>
-          <Button className={styles.add_children} type="button" color="primary">
+        <Link href={"/modify-parent"} passHref>
+          <Button
+            className={styles.modify_parent}
+            type="button"
+            color="primary"
+          >
             Modifier le profil
           </Button>
         </Link>
