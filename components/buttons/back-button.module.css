@@ -1,0 +1,11 @@
+.back_button {
+  padding: 5px 8px;
+  background: var(--quaternary);
+  color: var(--white);
+  border-radius: 100%;
+  margin-right: 20px;
+}
+
+.back_button:hover {
+  cursor: pointer;
+}
