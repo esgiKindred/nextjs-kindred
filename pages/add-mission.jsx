@@ -1,5 +1,5 @@
 import { Form, Container, Button } from "react-bulma-components";
-import styles from "./add-contract.module.css";
+import styles from "../styles/Home.module.css";
 import { LayoutHome } from "../components/layout-home/layout-home";
 import { useRouter } from "next/router";
 import BackButton from "../components/buttons/back-button";
