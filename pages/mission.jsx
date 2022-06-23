@@ -34,19 +34,34 @@ export default function Mission() {
             <p>Je suis une catégorie</p>
             <div className={style.missionsCard}>
               <ul>
-                <li>12 Kin's</li>
-                <li>50 points</li>
+                <li className={styles.kins}>12 Kin's</li>
+                <li className={styles.points}>50 points</li>
               </ul>
               <Circle />
             </div>
+            <div className={styles.user}>
+              <img src={Image}></img>
+              <p> Jeff Hépipioli</p>
+            </div>
+            <p>Du 12/04/2022 à 18hOO au 14/04/2022 à 9h00</p>
           </Columns.Column>
           <Columns.Column className={styles.card}>
-            <h3>Coucou c'est moi</h3>
-            <p>Salut ca va</p>
+            <h3>Titre de la mission</h3>
+            <p>Je suis une catégorie</p>
+            <div className={style.missionsCard}>
+              <ul>
+                <li className={styles.kins}>12 Kin's</li>
+                <li className={styles.points}>50 points</li>
+              </ul>
+              <Circle />
+            </div>
+            <div className={styles.user}>
+              <img src={Image}></img>
+              <p> Jeff Hépipioli</p>
+            </div>
+            <p>Du 12/04/2022 à 18hOO au 14/04/2022 à 9h00</p>
           </Columns.Column>
         </Columns>
-
-        <img src={Image} alt="Image"></img>
       </div>
     </Container>
   );

@@ -18,6 +18,10 @@
 
 .main ul {
   list-style: none;
+  margin: 0 !important;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .footer {
@@ -57,22 +61,23 @@
   margin-bottom: 0% !important;
 }
 
-.titleBack {
-  display: flex;
-  align-items: center;
-}
-
-.titleBack h2 {
-  margin-top: 0% !important;
-  margin-bottom: 0% !important;
-  margin-left: 10px;
-}
-
 .h2 {
   font-family: "Etna";
   font-style: normal;
   font-weight: 400;
   font-size: 1.5rem;
+}
+
+.user {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1em;
+}
+
+.user img {
+  width: 35px;
+  height: 35px;
+  margin-right: 20px;
 }
 
 .grid {
@@ -101,7 +106,7 @@
   font-family: "Etna";
   font-style: normal;
   font-weight: 400;
-  font-size: 1.2rem;
+  font-size: 1.4rem;
 }
 
 .card p {
@@ -116,6 +121,14 @@
   font-weight: 700;
   font-size: 16px;
   color: var(--primary-dark);
+}
+
+.card .points {
+  font-family: "Orkney";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  color: var(--quaternary);
 }
 
 .card:hover,
@@ -149,6 +162,10 @@
 
 .submit {
   width: 100%;
+  font-family: "Orkney";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 1rem;
 }
 
 @media (max-width: 600px) {
