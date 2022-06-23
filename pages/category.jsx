@@ -25,11 +25,36 @@ export default function Category() {
         <Columns>
           <Columns.Column className={styles.card}>
             <h3>Coucou c'est moi</h3>
-            <p>Salut ca va</p>
+            <div className={styles.listHorizontal}>
+              <Button className={styles.submit} color="secondary" type="submit">
+                Modifier
+              </Button>
+              <Button className={styles.submit} color="danger" type="submit">
+                Supprimer
+              </Button>
+            </div>
           </Columns.Column>
           <Columns.Column className={styles.card}>
             <h3>Coucou c'est moi</h3>
-            <p>Salut ca va</p>
+            <div className={styles.listHorizontal}>
+              <Button className={styles.submit} color="secondary" type="submit">
+                Modifier
+              </Button>
+              <Button className={styles.submit} color="danger" type="submit">
+                Supprimer
+              </Button>
+            </div>
+          </Columns.Column>
+          <Columns.Column className={styles.card}>
+            <h3>Coucou c'est moi</h3>
+            <div className={styles.listHorizontal}>
+              <Button className={styles.submit} color="secondary" type="submit">
+                Modifier
+              </Button>
+              <Button className={styles.submit} color="danger" type="submit">
+                Supprimer
+              </Button>
+            </div>
           </Columns.Column>
         </Columns>
       </div>
