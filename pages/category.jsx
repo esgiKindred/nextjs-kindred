@@ -9,7 +9,7 @@ export default function Category() {
     <Container className={styles.main}>
       <div>
         <Columns>
-          <Columns.Column size={8} className={styles.titleBack}>
+          <Columns.Column size={8} className={styles.title}>
             <BackButton />
             <h2 className={styles.h2}>Liste des catégories</h2>
           </Columns.Column>
