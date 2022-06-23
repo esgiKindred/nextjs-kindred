@@ -1,10 +1,11 @@
-import { Columns, Button, Container } from "react-bulma-components";
+import {Columns, Button, Container} from "react-bulma-components";
 import styles from "../styles/Home.module.css";
 import style from "./mission.module.css";
 import { LayoutHome } from "../components/layout-home/layout-home";
 import Link from "next/link";
+import Image from "next/image";
 import Circle from "../components/circles/circle";
-import Image from "../assets/images/etoiles.png";
+import etoiles from "../assets/images/etoiles.png";
 
 export default function Mission() {
   return (
@@ -40,7 +41,13 @@ export default function Mission() {
               <Circle />
             </div>
             <div className={styles.user}>
-              <img src={Image}></img>
+
+              <Image
+                  src={etoiles}
+                  alt="logo"
+                  width={100}
+                  height={100}
+              />
               <p> Jeff Hépipioli</p>
             </div>
             <p>Du 12/04/2022 à 18hOO au 14/04/2022 à 9h00</p>
@@ -56,9 +63,16 @@ export default function Mission() {
               <Circle />
             </div>
             <div className={styles.user}>
-              <img src={Image}></img>
+              <Image
+                  src={etoiles}
+                  alt="logo"
+                  width={100}
+                  height={100}
+              />
+
               <p> Jeff Hépipioli</p>
             </div>
+
             <p>Du 12/04/2022 à 18hOO au 14/04/2022 à 9h00</p>
           </Columns.Column>
         </Columns>
