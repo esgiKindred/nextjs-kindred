@@ -75,6 +75,10 @@ textarea {
   background-color: var(--secondary) !important;
   color: var(--primary) !important;
   border-color: transparent !important;
+  font-family: "Orkney";
+  font-style: normal;
+  font-weight: 300;
+  font-size: 12px;
 }
 
 input:hover,

@@ -3,13 +3,23 @@
 }
 
 .main {
-  min-height: 100vh;
-  padding: 4rem 0;
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  background-color: var(--white);
+  padding: 30px;
+  border-radius: 50px 50px 0 0;
+}
+
+.main p {
+  font-family: "Orkney";
+  font-style: normal;
+  font-weight: 300;
+  font-size: 12px;
+  color: var(--primary-dark);
+  margin: 0 !important;
+}
+
+.main ul {
+  list-style: none;
+  margin: 0 !important;
 }
 
 .footer {
@@ -40,29 +50,31 @@
 }
 
 .title {
-  margin: 0;
-  line-height: 1.15;
-  font-size: 4rem;
+  display: flex;
+  align-items: center;
 }
 
-.title,
-.description {
-  text-align: center;
+.title h2 {
+  margin-top: 0% !important;
+  margin-bottom: 0% !important;
 }
 
-.description {
-  margin: 4rem 0;
-  line-height: 1.5;
+.h2 {
+  font-family: "Etna";
+  font-style: normal;
+  font-weight: 400;
   font-size: 1.5rem;
 }
 
-.code {
-  background: #fafafa;
-  border-radius: 5px;
-  padding: 0.75rem;
-  font-size: 1.1rem;
-  font-family: Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono,
-    Bitstream Vera Sans Mono, Courier New, monospace;
+.listHorizontal {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.listHorizontal img {
+  width: 35px !important;
+  height: 35px !important;
 }
 
 .grid {
@@ -82,30 +94,79 @@
   border: 1px solid #eaeaea;
   border-radius: 10px;
   transition: color 0.15s ease, border-color 0.15s ease;
-  max-width: 300px;
+  box-shadow: 0px 2px 4px 2px rgba(221, 221, 221, 0.5);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1em;
+}
+
+.card h3 {
+  color: var(--primary-dark);
+  font-family: "Etna";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 1.4rem;
+  margin: 0 !important;
+}
+
+.card p {
+  margin: 0;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+.card .kins {
+  font-family: "Orkney";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  color: var(--primary-dark);
+}
+
+.card .points {
+  font-family: "Orkney";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  color: var(--quaternary);
 }
 
 .card:hover,
 .card:focus,
 .card:active {
   color: #0070f3;
-  border-color: #0070f3;
-}
-
-.card h2 {
-  margin: 0 0 1rem 0;
-  font-size: 1.5rem;
-}
-
-.card p {
-  margin: 0;
-  font-size: 1.25rem;
-  line-height: 1.5;
 }
 
 .logo {
   height: 1em;
   margin-left: 0.5rem;
+}
+
+.bouton {
+  margin-left: 1rem;
+  font-family: "Orkney";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 1rem;
+}
+
+.boutons {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.field {
+  margin-top: 30px;
+}
+
+.submit {
+  width: 100%;
+  font-family: "Orkney";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 1rem;
 }
 
 @media (max-width: 600px) {

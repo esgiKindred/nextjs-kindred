@@ -1,0 +1,11 @@
+.missionsCard {
+  display: flex;
+  justify-content: space-between;
+  margin: 0 4em !important;
+}
+
+.vertical {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}

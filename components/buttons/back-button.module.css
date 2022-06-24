@@ -3,6 +3,7 @@
   background: var(--quaternary);
   color: var(--white);
   border-radius: 100%;
+  margin-right: 20px;
 }
 
 .back_button:hover {
