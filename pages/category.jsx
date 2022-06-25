@@ -21,7 +21,7 @@ export default function Category() {
         </Columns.Column>
       </Columns>
 
-      <Columns>
+      <Columns className={styles.cards}>
         <Columns.Column className={styles.card}>
           <h3>Coucou c'est moi</h3>
           <div className={styles.listHorizontal}>

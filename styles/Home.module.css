@@ -77,12 +77,20 @@
   height: 35px !important;
 }
 
+.listHorizontal span {
+  width: 100%;
+}
+
 .grid {
   display: flex;
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
   max-width: 800px;
+}
+
+.cards {
+  margin-top: 2em;
 }
 
 .card {
@@ -99,6 +107,7 @@
   flex-direction: column;
   justify-content: center;
   gap: 1em;
+  max-width: 31%;
 }
 
 .card h3 {

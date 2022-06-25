@@ -12,7 +12,7 @@ export default function RewardsParent() {
           <h2 className={styles.h2}>Récompenses disponibles</h2>
         </Columns.Column>
         <Columns.Column size={4} className={styles.boutons}>
-          <Link href={"/add-rewards"} passHref>
+          <Link href={"/add-category"} passHref>
             <Button className={styles.bouton} type="button" color="secondary">
               Ajouter une nouvelle récompense
             </Button>
@@ -20,7 +20,7 @@ export default function RewardsParent() {
         </Columns.Column>
       </Columns>
 
-      <Columns>
+      <Columns className={styles.cards}>
         <Columns.Column className={styles.card}>
           <h3>Coucou c'est moi</h3>
           <p>Je suis une description</p>
