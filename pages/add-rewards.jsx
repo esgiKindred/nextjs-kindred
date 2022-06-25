@@ -4,7 +4,7 @@ import { LayoutHome } from "../components/layout-home/layout-home";
 import { useRouter } from "next/router";
 import BackButton from "../components/buttons/back-button";
 
-export default function AddMission() {
+export default function AddRewards() {
   const router = useRouter();
   const { error } = router.query;
 
@@ -12,10 +12,10 @@ export default function AddMission() {
     <Container className={styles.main}>
       <div className={styles.title}>
         <BackButton />
-        <h2 className={styles.h2}>Créer une mission</h2>
+        <h2 className={styles.h2}>Créer une récompense</h2>
       </div>
       {error ? <Notification color={"danger"}>{error}</Notification> : null}
-      <form id="add-mission-form">
+      <form id="add-rewards-form">
         <Form.Field className={styles.field}>
           <Form.Control>
             <Form.Input
@@ -24,15 +24,6 @@ export default function AddMission() {
               type="text"
               placeholder="Intitulé"
             />
-          </Form.Control>
-        </Form.Field>
-
-        <Form.Field className={styles.field}>
-          <Form.Control>
-            <Form.Select>
-              <option value="option1">Option 1</option>
-              <option value="option2">Option 2</option>
-            </Form.Select>
           </Form.Control>
         </Form.Field>
 
@@ -59,7 +50,7 @@ export default function AddMission() {
   );
 }
 
-AddMission.getLayout = function getLayout(page) {
+AddRewards.getLayout = function getLayout(page) {
   return <LayoutHome>{page}</LayoutHome>;
 };
-AddMission.auth = false;
+AddRewards.auth = false;

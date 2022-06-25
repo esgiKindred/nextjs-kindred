@@ -8,4 +8,5 @@
 
 .back_button:hover {
   cursor: pointer;
+  background: var(--quaternary-dark);
 }

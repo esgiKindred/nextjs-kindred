@@ -1,21 +1,20 @@
+import { Component } from "react";
+import { LayoutHome } from "../components/layout-home/layout-home";
 import { Columns, Button, Container } from "react-bulma-components";
 import styles from "../styles/Home.module.css";
-import { LayoutHome } from "../components/layout-home/layout-home";
 import Link from "next/link";
-import BackButton from "../components/buttons/back-button";
 
-export default function Category() {
+export default function RewardsParent() {
   return (
     <Container className={styles.main}>
       <Columns>
         <Columns.Column size={8} className={styles.title}>
-          <BackButton />
-          <h2 className={styles.h2}>Liste des catégories</h2>
+          <h2 className={styles.h2}>Récompenses disponibles</h2>
         </Columns.Column>
         <Columns.Column size={4} className={styles.boutons}>
-          <Link href={"/add-category"} passHref>
+          <Link href={"/add-rewards"} passHref>
             <Button className={styles.bouton} type="button" color="secondary">
-              Créer une categorie de mission
+              Ajouter une nouvelle récompense
             </Button>
           </Link>
         </Columns.Column>
@@ -24,6 +23,8 @@ export default function Category() {
       <Columns>
         <Columns.Column className={styles.card}>
           <h3>Coucou c'est moi</h3>
+          <p>Je suis une description</p>
+          <p className={styles.points}>50 points</p>
           <div className={styles.listHorizontal}>
             <Button className={styles.submit} color="secondary" type="submit">
               Modifier
@@ -35,6 +36,8 @@ export default function Category() {
         </Columns.Column>
         <Columns.Column className={styles.card}>
           <h3>Coucou c'est moi</h3>
+          <p>Je suis une description</p>
+          <p className={styles.points}>50 points</p>
           <div className={styles.listHorizontal}>
             <Button className={styles.submit} color="secondary" type="submit">
               Modifier
@@ -43,9 +46,11 @@ export default function Category() {
               Supprimer
             </Button>
           </div>
-        </Columns.Column>
+        </Columns.Column>{" "}
         <Columns.Column className={styles.card}>
           <h3>Coucou c'est moi</h3>
+          <p>Je suis une description</p>
+          <p className={styles.points}>50 points</p>
           <div className={styles.listHorizontal}>
             <Button className={styles.submit} color="secondary" type="submit">
               Modifier
@@ -60,7 +65,7 @@ export default function Category() {
   );
 }
 
-Category.getLayout = function getLayout(page) {
+RewardsParent.getLayout = function getLayout(page) {
   return <LayoutHome>{page}</LayoutHome>;
 };
-Category.auth = false;
+RewardsParent.auth = true;

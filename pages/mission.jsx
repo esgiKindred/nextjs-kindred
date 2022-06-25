@@ -6,8 +6,36 @@ import Link from "next/link";
 import Circle from "../components/circles/circle";
 import etoiles from "../assets/images/etoiles.png";
 import Image from "next/image";
-
+import { useEffect, useState } from "react";
+import { useSession } from "next-auth/react";
 export default function Mission() {
+  const [userInformation, setUserInformation] = useState({
+    kins: "-",
+    pointsBonus: "-",
+    lastName: "-",
+    firstName: "-",
+  });
+
+  const { data: session, status } = useSession();
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const response = await fetch(
+        "http://127.0.0.1:8000/api/" + "users/" + session.user.id,
+        {
+          headers: {
+            Accept: "application/json",
+          },
+        }
+      );
+      const newData = await response.json();
+      setUserInformation(newData);
+    };
+
+    fetchData();
+  }, [session.user.id]);
+
+  console.log(session);
   return (
     <Container className={styles.main}>
       <Columns>
