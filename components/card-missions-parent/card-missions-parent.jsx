@@ -1,7 +1,6 @@
 import styles from "../../styles/Home.module.css";
 import style from "./card-missions-parent.module.css";
 import { Columns } from "react-bulma-components";
-import Circle from "../circles/circle";
 import enfant from "../../assets/images/enfant1.png";
 import Image from "next/image";
 
@@ -11,8 +10,8 @@ export default function CardMissionsParent(column, user) {
       <h3>{column.column.titre}</h3>
 
       <ul className={styles.listHorizontal}>
-        <p>{column.column.categorie}</p>
-        <p>{column.column.etat}</p>
+        <p className={styles.category}>{column.column.categorie}</p>
+        <p className={styles.state}>{column.column.etat}</p>
       </ul>
 
       <div className={style.missionsCard}>

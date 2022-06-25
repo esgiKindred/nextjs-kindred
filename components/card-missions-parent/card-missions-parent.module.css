@@ -1,7 +1,7 @@
 .missionsCard {
   display: flex;
   justify-content: space-between;
-  margin: 0 4em !important;
+  margin: 0 3em !important;
 }
 
 .vertical {

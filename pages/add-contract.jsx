@@ -1,17 +1,8 @@
-import { Component } from "react";
+import { Form, Container, Button } from "react-bulma-components";
+import styles from "../styles/Home.module.css";
 import { LayoutHome } from "../components/layout-home/layout-home";
-import {
-  Button,
-  Form,
-  Heading,
-  Container,
-  Notification,
-} from "react-bulma-components";
-import Link from "next/link";
-import Dashboard from "./index";
-import styles from "./add-contract.module.css";
-import BackButton from "../components/buttons/back-button";
 import { useRouter } from "next/router";
+import BackButton from "../components/buttons/back-button";
 
 export default function AddContract() {
   const router = useRouter();
@@ -21,17 +12,17 @@ export default function AddContract() {
     <Container className={styles.main}>
       <div className={styles.title}>
         <BackButton />
-        <h2 className={styles.h2}>Mes contrats</h2>
+        <h2 className={styles.h2}>Créer un contrat</h2>
       </div>
       {error ? <Notification color={"danger"}>{error}</Notification> : null}
-      <form id="add-contract-form" className={styles.form}>
+      <form id="add-rewards-form">
         <Form.Field className={styles.field}>
           <Form.Control>
             <Form.Input
-              name="username"
+              name="intitulé"
               color="primary"
               type="text"
-              placeholder="Email"
+              placeholder="Intitulé"
             />
           </Form.Control>
         </Form.Field>
@@ -39,11 +30,20 @@ export default function AddContract() {
         <Form.Field className={styles.field}>
           <Form.Control>
             <Form.Textarea
-              name="password"
+              name="description"
               color="primary"
-              type="password"
-              placeholder="Mot de passe"
+              type="text"
+              placeholder="Description"
             />
+          </Form.Control>
+        </Form.Field>
+
+        <Form.Field className={styles.field}>
+          <Form.Control>
+            <Form.Select>
+              <option value="option1">Option 1</option>
+              <option value="option2">Option 2</option>
+            </Form.Select>
           </Form.Control>
         </Form.Field>
 
