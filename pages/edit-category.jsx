@@ -4,9 +4,11 @@ import { LayoutHome } from "../components/layout-home/layout-home";
 import { useRouter } from "next/router";
 import BackButton from "../components/buttons/back-button";
 import {useState} from "react";
+import {router} from "next/client";
 
 export default function AddCategory() {
   const {query} = useRouter();
+
 
 
   const [errorMessage, setErrorMessage] = useState(false);
@@ -29,7 +31,7 @@ export default function AddCategory() {
       return
     }
 
-    fetch('http://127.0.0.1:8000/api/categories',{ method: 'POST',
+    fetch('http://127.0.0.1:8000/api/categories/' + router.query.id,{ method: 'PUT',
       headers: {
         "Content-Type": "application/json",
       },
@@ -74,6 +76,8 @@ export default function AddCategory() {
               color="primary"
               type="text"
               placeholder="Nom de la mission"
+              defaultValue={router.query.nom}
+
             />
           </Form.Control>
         </Form.Field>
@@ -85,6 +89,7 @@ export default function AddCategory() {
                 color="primary"
                 type="color"
                 placeholder="Couleur de la catégorie"
+                defaultValue={router.query.couleur}
             />
           </Form.Control>
         </Form.Field>
@@ -92,7 +97,7 @@ export default function AddCategory() {
         <Form.Field className={styles.field}>
           <Form.Control>
             <Button className={styles.submit} color="secondary" type="submit">
-              Ajouter
+              Modifier
             </Button>
           </Form.Control>
         </Form.Field>

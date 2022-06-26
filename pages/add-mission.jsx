@@ -132,7 +132,7 @@ export default function AddMission() {
 
               {categories.map((categorie) => {
                 return (
-                    <option value={categorie.id}>{categorie.nom}</option>
+                    <option key={categorie.id} value={categorie.id}>{categorie.nom}</option>
                 );
               })}
             </Form.Select>
