@@ -107,7 +107,6 @@
   flex-direction: column;
   justify-content: center;
   gap: 1em;
-  max-width: 31%;
 }
 
 .card h3 {

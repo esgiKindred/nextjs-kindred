@@ -7,18 +7,11 @@ import { useEffect, useState } from "react";
 import { useSession } from "next-auth/react";
 
 export default function Mission() {
-  const [missionInformation, setMissionInformation] = useState({
-    kins: "-",
-    points: "-",
-    titre: "-",
-    etat: "-",
-    evaluation: "-",
-    categorie: "-",
-    date: "-",
-  });
 
-  const { data: session, status } = useSession();
 
+  const [missions, setMissions] = useState([]);
+
+  const { data: session } = useSession();
   useEffect(() => {
     const fetchData = async () => {
       const response = await fetch(
@@ -30,26 +23,14 @@ export default function Mission() {
         }
       );
       const newData = await response.json();
-      console.log(newData);
-      setMissionInformation(newData);
+      setMissions(newData);
+
     };
 
     fetchData();
   }, [session.user.id]);
 
-  const array_chunks = (array, chunks) => {
-    let result = [];
-    let n = array.length;
-    for (let i = 0; i < n; i += chunks) {
-      result = [...result, array.slice(i, i + chunks)];
-    }
-    return result;
-  };
 
-  console.log(session);
-
-  const lines = array_chunks(missionInformation, 3);
-  console.log("lines", lines);
 
   return (
     <Container className={styles.main}>
@@ -70,15 +51,15 @@ export default function Mission() {
           </Link>
         </Columns.Column>
       </Columns>
-      {lines.map((columns) => {
-        return (
-          <Columns>
-            {columns.map((column) => (
-              <CardMissionsParent column={column} user={session.user} />
-            ))}
-          </Columns>
-        );
-      })}
+      <Columns centered={true}>
+
+            {missions.map((mission) => {
+              return (
+              <CardMissionsParent key={mission.id} mission={mission}/>
+              )
+            })}
+      </Columns>
+
     </Container>
   );
 }
