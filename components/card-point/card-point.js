@@ -1,10 +1,11 @@
 import styles from "./card-point.module.css";
+import {Block} from "react-bulma-components";
 
-export default function CardPoint({title,points}) {
+export default function CardPoint({title,points,type}) {
     return (
-       <div className={styles.background}>
-           <h4 className={styles.title}>{title}</h4>
-           <h1 className={styles.points}>{points}</h1>
-       </div>
+        <Block className={type == 'bonus' ? styles.bonus : styles.kins}>
+            <span>{title}</span>
+            <span>{points}</span>
+        </Block>
     );
 }

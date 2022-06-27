@@ -10,6 +10,7 @@ import {
 import Link from "next/link";
 import Dashboard from "./index";
 import styles from "./user.module.css";
+import CardPoint from "../components/card-point/card-point";
 
 export default function Contract() {
   return (
@@ -31,14 +32,17 @@ export default function Contract() {
       <Block className={styles.points}>
         <h3>Mes cagnottes</h3>
         <Block className={styles.points_block}>
-          <Block className={styles.kins}>
-            <span>{"Total des Kin's"}</span>
-            <span>{"XX Kin's"}</span>
-          </Block>
-          <Block className={styles.bonus}>
-            <span>{"Total des points bonus"}</span>
-            <span>{"XX points"}</span>
-          </Block>
+            <CardPoint
+                title={"Total des Kin's"}
+                points={"- points"}
+                type={'kins'}
+            ></CardPoint>
+            <CardPoint
+                title={"Total des points"}
+                points={"- points bonus"}
+                type={'bonus'}
+            ></CardPoint>
+
         </Block>
       </Block>
     </Container>

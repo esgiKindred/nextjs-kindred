@@ -38,31 +38,6 @@
   grid-gap: 0 30px;
 }
 
-.kins,
-.bonus {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: space-around;
-  height: 100px;
-  padding: 10px;
-  border-radius: 4px;
-  color: var(--white);
-}
-
-.kins span:nth-of-type(2),
-.bonus span:nth-of-type(2) {
-  font-size: 24px;
-  font-weight: bold;
-}
-
-.kins {
-  background-color: var(--quaternary);
-}
-
-.bonus {
-  background-color: var(--primary);
-}
 
 .buttons > button {
   width: 100%;

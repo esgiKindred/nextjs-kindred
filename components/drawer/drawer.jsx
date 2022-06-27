@@ -2,7 +2,6 @@ import { Component } from "react";
 import { MenuLink } from "../menu-link/menu-link";
 import styles from "./drawer.module.css";
 import Link from "next/link";
-import Session from "../session";
 
 export class Drawer extends Component {
   constructor(props) {
@@ -36,19 +35,6 @@ export class Drawer extends Component {
             routeDestination="/rewards-parent"
             routeName="Recompense Parent"
           ></MenuLink>
-
-          <h1>Dev</h1>
-
-          <MenuLink
-            routeDestination="/credentials/login"
-            routeName="Login"
-          ></MenuLink>
-          <MenuLink
-            routeDestination="/credentials/register"
-            routeName="Register"
-          ></MenuLink>
-
-          <Session></Session>
         </div>
       );
     } else {

@@ -38,12 +38,14 @@ export default function Dashboard() {
         Bienvenue {userInformation.firstName} {userInformation.lastName}
       </h1>
       <CardPoint
-        title={"Total des points bonus"}
-        points={userInformation.kins + " points"}
+        title={"Total des points"}
+        points={userInformation.kins + " Kin's"}
+        type={'kins'}
       ></CardPoint>
       <CardPoint
-        title={"Total des points"}
-        points={userInformation.pointsBonus + " Kin's"}
+        title={"Total des points bonus"}
+        points={userInformation.pointsBonus + " bonus"}
+        type={'bonus'}
       ></CardPoint>
     </div>
   );

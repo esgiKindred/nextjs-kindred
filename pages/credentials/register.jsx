@@ -150,7 +150,7 @@ export default function Register(){
 
 
         async function registration(firstname ,lastname,username,password) {
-           return  fetch('http://127.0.0.1:8000/registration/parent',{ method: 'POST',
+           return  fetch('http://127.0.0.1:8000/api/registration/parent',{ method: 'POST',
                headers: {
                "Content-Type": "application/json",
                 },
