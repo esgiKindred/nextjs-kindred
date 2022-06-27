@@ -57,7 +57,6 @@ export default function Category() {
 
         {
           categories.map((categorie) => {
-            console.log(categorie)
             return(
             <div  key={categorie.id} className={styles.card} style={{backgroundColor : categorie.couleur}} >
               <h3>{categorie.nom}</h3>

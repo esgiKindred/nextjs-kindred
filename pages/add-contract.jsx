@@ -62,4 +62,4 @@ export default function AddContract() {
 AddContract.getLayout = function getLayout(page) {
   return <LayoutHome>{page}</LayoutHome>;
 };
-AddContract.auth = false;
+AddContract.auth = true;
