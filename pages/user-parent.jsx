@@ -10,20 +10,60 @@ import {
 import Link from "next/link";
 import Dashboard from "./index";
 import styles from "./user-parent.module.css";
+import { useEffect, useState } from "react";
+import { useSession } from "next-auth/react";
+import Circle from "../components/circles/circle";
 
 export default function Contract() {
+    const [userInformation, setUserInformation] = useState([]);
+    const [childrenInformation, setChildrenInformation] = useState([])
+    const { data: session, status } = useSession();
+
+    useEffect(() => {
+      const fetchUser = async () => {
+          const response = await fetch(
+          "http://127.0.0.1:8000/api/" + "users/" + session.user.id,
+          {
+              headers: {
+              Accept: "application/json",
+              },
+          }
+          );
+          const newData = await response.json();
+          setUserInformation(newData);
+      };
+      fetchUser();
+
+      const fetchChildren = async () => {
+        const response = await fetch(
+        "http://127.0.0.1:8000/api/" + "users/?parent=" + session.user.id,
+        {
+            headers: {
+            Accept: "application/json",
+            },
+        }
+        );
+        const newData = await response.json();
+        setChildrenInformation(newData);
+      };
+      fetchChildren();
+    }, [session.user.id]);
   return (
     <Container className={styles.main}>
       <Image src="" alt="Profile picture" />
       <Block>
-        <h2>Prenom Nom</h2>
-        <span>email</span>
+        <h2>{userInformation.lastName} {userInformation.firstName}</h2>
+        <span>{userInformation.email}</span>
       </Block>
       <Block className={styles.children}>
         <h3>Parent de :</h3>
         <Block className={styles.children_block}>
-          <Image src="" alt="Children profile picture" />
-          <span>Prenom Nom</span>
+        {childrenInformation.map((child) => {
+            return (
+            <span>
+            <Circle/>{child.lastName} {child.firstName}</span>
+            );
+        })}
         </Block>
       </Block>
       <Block className={styles.buttons}>

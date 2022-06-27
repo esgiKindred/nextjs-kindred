@@ -14,6 +14,11 @@
 }
 
 .children_block {
+  display: flex;
+  flex-direction: column;
+}
+
+.children_block span{
   display: grid;
   grid-template-columns: 1fr 2fr;
   align-items: center;
