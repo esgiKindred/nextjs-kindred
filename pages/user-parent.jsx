@@ -53,4 +53,4 @@ export default function Contract() {
 Contract.getLayout = function getLayout(page) {
   return <LayoutHome>{page}</LayoutHome>;
 };
-Contract.auth = false;
+Contract.auth = true;
