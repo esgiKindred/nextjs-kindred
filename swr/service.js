@@ -10,15 +10,30 @@ const fetcher = (url,method = "GET") => fetch( url ,{
     },
 }).then((res) => res.json())
 
-export function GetMissionByUserId (id) {
-    const { data, error } = useSWR(apiUrl + "/api/missions?user=" + id, fetcher)
-
-    return {
-        data: data,
-        isLoading: !error && !data,
-        isError: error
+export function GetMissionByUserId (id, roles) {
+    console.log(roles, id);
+    if (roles.includes('parent')) {
+        const { data, error } = useSWR(apiUrl + "/api/missions?creator=" + id, fetcher)
+        return {
+            data: data,
+            isLoading: !error && !data,
+            isError: error
+        }
+    } else {
+        const { data, error } = useSWR(apiUrl + "/api/missions?users=" + id, fetcher)
+        return {
+            data: data,
+            isLoading: !error && !data,
+            isError: error
+        }
     }
 }
+
+export function GetMissionsByUserIdAndRole (id, roles) {
+    
+    
+}
+
 export function GetContratsByUserId (id) {
     const { data, error } = useSWR(apiUrl + "/api/contrats?users=" + id, fetcher)
     return {

@@ -10,7 +10,7 @@ import { GetMissionByUserId } from "../swr/service";
 export default function Mission() {
   const { data: session } = useSession();
   const { data: missionsData, error: missionsError } = GetMissionByUserId(
-    session.user.id
+    session.user.id, session.user.roles
   );
   const role = session.user.roles[0];
 
