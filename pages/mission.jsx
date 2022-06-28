@@ -2,7 +2,7 @@ import { Columns, Button, Container } from "react-bulma-components";
 import styles from "../styles/Home.module.css";
 import { LayoutHome } from "../components/layout-home/layout-home";
 import Link from "next/link";
-import CardMissionsParent from "../components/card-missions-parent/card-missions-parent";
+import CardMissions from "../components/card-missions/card-missions";
 import { useEffect, useState } from "react";
 import { useSession } from "next-auth/react";
 import { GetMissionByUserId } from "../swr/service";
@@ -40,7 +40,9 @@ export default function Mission() {
       </Columns>
       <Columns centered={true}>
         {missionsData.map((mission) => {
-          return <CardMissionsParent key={mission.id} mission={mission} />;
+          return (
+            <CardMissions key={mission.id} mission={mission} role={role} />
+          );
         })}
       </Columns>
     </Container>
