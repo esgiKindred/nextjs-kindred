@@ -50,6 +50,7 @@ export default function Contract() {
     };
     fetchParent();
   }, [session.user.id]);
+
   return (
     <Container className={styles.main}>
       <div className={styles.picture_block}>
@@ -81,12 +82,12 @@ export default function Contract() {
         <Block className={styles.points_block}>
           <CardPoint
             title={"Total des Kin's"}
-            points={userInformation.kins}
+            points={`${userInformation.kins} Kin's`}
             type={"kins"}
           ></CardPoint>
           <CardPoint
             title={"Total des points"}
-            points={userInformation.pointsBonus}
+            points={`${userInformation.pointsBonus} Points`}
             type={"bonus"}
           ></CardPoint>
         </Block>
