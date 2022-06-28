@@ -18,3 +18,13 @@ export function GetMissionByUserId (id) {
         isError: error
     }
 }
+
+export function GetUserBy (id) {
+    const { data, error } = useSWR(apiUrl + "users/" + id, fetcher)
+
+    return {
+        data: data,
+        isLoading: !error && !data,
+        isError: error
+    }
+}
