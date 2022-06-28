@@ -1,21 +1,16 @@
-import {Component} from "react";
 
 import styles from './menu-link.module.css';
 import Link from "next/link";
 
 
-export class MenuLink extends Component {
-    constructor(props) {
-        super(props);
-    }
+export function MenuLink({drawerState,routeDestination,routeName})  {
 
-    render() {
+    console.log(drawerState)
+
         return (
-            <Link href={this.props.routeDestination}>
-                <a className={styles.menuLink}>{this.props.routeName}</a>
+            <Link href={routeDestination} onclick={() => {drawerState = false}}>
+                <a className={styles.menuLink}>{routeName}</a>
             </Link>
-
         )
-    }
 }
 

@@ -19,7 +19,7 @@ export class Drawer extends Component {
             <i className="bi bi-x-circle"></i>
           </span>
 
-          <MenuLink routeDestination="/" routeName="Dashboard"></MenuLink>
+          <MenuLink routeDestination="/" routeName="Dashboard" drawerState={this.state.open}></MenuLink>
           <MenuLink routeDestination="/user" routeName="Profil"></MenuLink>
           <MenuLink
             routeDestination="/user-parent"
