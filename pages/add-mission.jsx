@@ -1,4 +1,10 @@
-import {Form, Container, Button, Notification, Columns} from "react-bulma-components";
+import {
+  Form,
+  Container,
+  Button,
+  Notification,
+  Columns,
+} from "react-bulma-components";
 import styles from "../styles/Home.module.css";
 import { LayoutHome } from "../components/layout-home/layout-home";
 import { useRouter } from "next/router";
@@ -6,8 +12,6 @@ import BackButton from "../components/buttons/back-button";
 import {useEffect, useState} from "react";
 import {useSession} from "next-auth/react";
 import { redirect } from "next/dist/server/api-utils";
-
-
 
 export default function AddMission() {
   const router = useRouter();
@@ -24,12 +28,12 @@ export default function AddMission() {
   useEffect(() => {
     const categorieFetch = async () => {
       const response = await fetch(
-          "http://127.0.0.1:8000/api/" + "categories",
-          {
-            headers: {
-              Accept: "application/json",
-            },
-          }
+        "http://127.0.0.1:8000/api/" + "categories",
+        {
+          headers: {
+            Accept: "application/json",
+          },
+        }
       );
       const newData = await response.json();
       setCategories(newData);
@@ -60,17 +64,18 @@ export default function AddMission() {
 
     //Guards
 
-    if(data.titre == ""){
-      setErrorMessage("Le titre de la mission est vide")
-      return
+    if (data.titre == "") {
+      setErrorMessage("Le titre de la mission est vide");
+      return;
     }
 
-    if(data.date == ""){
-      setErrorMessage("la date est vide")
-      return
+    if (data.date == "") {
+      setErrorMessage("la date est vide");
+      return;
     }
 
-    fetch('http://127.0.0.1:8000/api/missions',{ method: 'POST',
+    fetch("http://127.0.0.1:8000/api/missions", {
+      method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
@@ -96,18 +101,12 @@ export default function AddMission() {
 
   return (
     <Container className={styles.main}>
-      { errorMessage ?
-          <Notification color={"danger"}>
-            {errorMessage}
-          </Notification>
-          : null
-      }
-      { infoMessage ?
-          <Notification color={"info"}>
-            {infoMessage}
-          </Notification>
-          : null
-      }
+      {errorMessage ? (
+        <Notification color={"danger"}>{errorMessage}</Notification>
+      ) : null}
+      {infoMessage ? (
+        <Notification color={"info"}>{infoMessage}</Notification>
+      ) : null}
       <div className={styles.title}>
         <BackButton />
         <h2 className={styles.h2}>Créer une mission</h2>
@@ -129,10 +128,10 @@ export default function AddMission() {
         <Form.Field className={styles.field}>
           <Form.Control>
             <Form.Input
-                name="kins"
-                color="primary"
-                type="number"
-                placeholder="Valeur en Kins"
+              name="kins"
+              color="primary"
+              type="number"
+              placeholder="Valeur en Kins"
             />
           </Form.Control>
         </Form.Field>
@@ -140,14 +139,12 @@ export default function AddMission() {
         <Form.Field className={styles.field}>
           <Form.Label>Categorie</Form.Label>
           <Form.Control>
-            <Form.Select   name="categorie"
-                           color="primary"
-                           type="text"
-                           >
-
+            <Form.Select name="categorie" color="primary" type="text">
               {categories.map((categorie) => {
                 return (
-                    <option key={categorie.id} value={categorie.id}>{categorie.nom}</option>
+                  <option key={categorie.id} value={categorie.id}>
+                    {categorie.nom}
+                  </option>
                 );
               })}
             </Form.Select>
@@ -174,10 +171,10 @@ export default function AddMission() {
         <Form.Field className={styles.field}>
           <Form.Control>
             <Form.Input
-                name="points"
-                color="primary"
-                type="number"
-                placeholder="point bonus"
+              name="points"
+              color="primary"
+              type="number"
+              placeholder="point bonus"
             />
           </Form.Control>
         </Form.Field>
@@ -185,10 +182,10 @@ export default function AddMission() {
         <Form.Field className={styles.field}>
           <Form.Control>
             <Form.Input
-                name="date"
-                color="primary"
-                type="date"
-                placeholder="date de la mission"
+              name="date"
+              color="primary"
+              type="date"
+              placeholder="date de la mission"
             />
           </Form.Control>
         </Form.Field>
@@ -203,10 +200,7 @@ export default function AddMission() {
       </form>
     </Container>
   );
-
 }
-
-
 
 AddMission.getLayout = function getLayout(page) {
   return <LayoutHome>{page}</LayoutHome>;
