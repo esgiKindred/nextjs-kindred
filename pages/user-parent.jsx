@@ -50,7 +50,8 @@ export default function Contract() {
     }, [session.user.id]);
   return (
     <Container className={styles.main}>
-      <Image src="" alt="Profile picture" />
+      <div class="d-flex justify-content-center"><Circle/></div>
+      
       <Block>
         <h2>{userInformation.lastName} {userInformation.firstName}</h2>
         <span>{userInformation.email}</span>
@@ -60,8 +61,7 @@ export default function Contract() {
         <Block className={styles.children_block}>
         {childrenInformation.map((child) => {
             return (
-            <span>
-            <Circle/>{child.lastName} {child.firstName}</span>
+            <span><Circle/>{child.lastName} {child.firstName}</span>
             );
         })}
         </Block>
