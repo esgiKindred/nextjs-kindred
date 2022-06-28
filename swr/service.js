@@ -19,7 +19,33 @@ export function GetMissionByUserId (id) {
         isError: error
     }
 }
+export function GetContratsByUserId (id) {
+    const { data, error } = useSWR(apiUrl + "/api/contrats?users=" + id, fetcher)
+    return {
+        data: data,
+        isLoading: !error && !data,
+        isError: error
+    }
+}
 
+export function GetContratById (id) {
+    const { data, error } = useSWR(apiUrl + "/api/contrats/" + id, fetcher)
+    return {
+        data: data,
+        isLoading: !error && !data,
+        isError: error
+    }
+}
+
+export function GetUsers () {
+    const { data, error } = useSWR(apiUrl + "/api/users", fetcher)
+
+    return {
+        data: data,
+        isLoading: !error && !data,
+        isError: error
+    }
+}
 export function GetUserBy (id) {
     const { data, error } = useSWR(apiUrl + "/api/users/" + id, fetcher)
 

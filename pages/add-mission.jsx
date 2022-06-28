@@ -11,6 +11,7 @@ import { useRouter } from "next/router";
 import BackButton from "../components/buttons/back-button";
 import { useEffect, useState } from "react";
 import { useSession } from "next-auth/react";
+import {GetCategories} from "../swr/service";
 
 export default function AddMission() {
   const router = useRouter();
@@ -19,27 +20,9 @@ export default function AddMission() {
   const [errorMessage, setErrorMessage] = useState(false);
   const [infoMessage, setInfoMessage] = useState(false);
 
-  const [categories, setCategories] = useState([]);
+  const { data : categoriesData, error : categoriesError } = GetCategories()
+  const { data: session } = useSession();
 
-  const { data: session, status } = useSession();
-
-  useEffect(() => {
-    const fetchData = async () => {
-      const response = await fetch(
-        "http://127.0.0.1:8000/api/" + "categories",
-        {
-          headers: {
-            Accept: "application/json",
-          },
-        }
-      );
-      const newData = await response.json();
-      // console.log(newData);
-      setCategories(newData);
-    };
-
-    fetchData();
-  }, [session.user.id]);
 
   function handleSubmit(event) {
     event.preventDefault();
@@ -86,6 +69,9 @@ export default function AddMission() {
     );
   }
 
+  if (categoriesError) return <h1>Something went wrong!</h1>;
+  if (!categoriesData) return <h1>Loading...</h1>;
+
   return (
     <Container className={styles.main}>
       {errorMessage ? (
@@ -127,7 +113,7 @@ export default function AddMission() {
           <Form.Label>Categorie</Form.Label>
           <Form.Control>
             <Form.Select name="categorie" color="primary" type="text">
-              {categories.map((categorie) => {
+              {categoriesData.map((categorie) => {
                 return (
                   <option key={categorie.id} value={categorie.id}>
                     {categorie.nom}
