@@ -17,35 +17,35 @@ import Circle from "../components/circles/circle";
 
 export default function Contract() {
   const [userInformation, setUserInformation] = useState([]);
-  const [parentInformation, setParentInformation] = useState([])
+  const [parentInformation, setParentInformation] = useState([]);
   const { data: session, status } = useSession();
 
   useEffect(() => {
     const fetchUser = async () => {
-        const response = await fetch(
+      const response = await fetch(
         "http://127.0.0.1:8000/api/" + "users/" + session.user.id,
         {
-            headers: {
+          headers: {
             Accept: "application/json",
-            },
+          },
         }
-        );
-        const newData = await response.json();
-        setUserInformation(newData);
+      );
+      const newData = await response.json();
+      setUserInformation(newData);
     };
     fetchUser();
 
     const fetchParent = async () => {
       const response = await fetch(
-      "http://127.0.0.1:8000/api/" + "users/?enfants=" + session.user.id,
-      {
+        "http://127.0.0.1:8000/api/" + "users/?enfants=" + session.user.id,
+        {
           headers: {
-          Accept: "application/json",
+            Accept: "application/json",
           },
-      }
+        }
       );
       const newData = await response.json();
-      console.log(newData)
+      console.log(newData);
       setParentInformation(newData);
     };
     fetchParent();
@@ -53,10 +53,14 @@ export default function Contract() {
   return (
     <Container className={styles.main}>
       <div className={styles.picture_block}>
-        <div class="d-flex justify-content-center"><Circle/></div>
+        <div className="d-flex justify-content-center">
+          <Circle />
+        </div>
       </div>
       <Block>
-        <h2>{userInformation.lastName} {userInformation.firstName}</h2>
+        <h2>
+          {userInformation.lastName} {userInformation.firstName}
+        </h2>
         <span>{userInformation.email}</span>
       </Block>
       <Block className={styles.children}>
@@ -64,25 +68,29 @@ export default function Contract() {
         <Block>
           {parentInformation.map((parent) => {
             return (
-              <div class="d-flex justify-content-center"><span><Circle/>{parent.lastName} {parent.firstName}</span></div>
+              <div className="d-flex justify-content-center" key={parent.id}>
+                <span>
+                  <Circle />
+                  {parent.lastName} {parent.firstName}
+                </span>
+              </div>
             );
-        })}
+          })}
         </Block>
       </Block>
       <Block className={styles.points}>
         <h3>Mes cagnottes</h3>
         <Block className={styles.points_block}>
-            <CardPoint
-                title={"Total des Kin's"}
-                points={userInformation.kins}
-                type={'kins'}
-            ></CardPoint>
-            <CardPoint
-                title={"Total des points"}
-                points={userInformation.pointsBonus}
-                type={'bonus'}
-            ></CardPoint>
-
+          <CardPoint
+            title={"Total des Kin's"}
+            points={userInformation.kins}
+            type={"kins"}
+          ></CardPoint>
+          <CardPoint
+            title={"Total des points"}
+            points={userInformation.pointsBonus}
+            type={"bonus"}
+          ></CardPoint>
         </Block>
       </Block>
     </Container>
