@@ -5,6 +5,7 @@ import { useRouter } from "next/router";
 import BackButton from "../components/buttons/back-button";
 import {useEffect, useState} from "react";
 import {useSession} from "next-auth/react";
+import { redirect } from "next/dist/server/api-utils";
 
 
 
@@ -16,12 +17,12 @@ export default function AddMission() {
   const [infoMessage, setInfoMessage] = useState(false);
 
   const [categories, setCategories] = useState([]);
-
+  const [children, setChildren] = useState([]);
 
   const { data: session, status } = useSession();
 
   useEffect(() => {
-    const fetchData = async () => {
+    const categorieFetch = async () => {
       const response = await fetch(
           "http://127.0.0.1:8000/api/" + "categories",
           {
@@ -31,11 +32,25 @@ export default function AddMission() {
           }
       );
       const newData = await response.json();
-      console.log(newData);
       setCategories(newData);
     };
+    categorieFetch();
 
-    fetchData();
+    const fetchChildren = async () => {
+      const response = await fetch(
+        "http://127.0.0.1:8000/api/" + "users?parent=" + session.user.id,
+        {
+          headers: {
+            Accept: "application/json",
+          },
+        }
+      );
+      const newData = await response.json();
+      console.log(newData);
+      setChildren(newData);
+    };
+    fetchChildren();
+
   }, [session.user.id]);
 
   function handleSubmit(event) {
@@ -65,7 +80,8 @@ export default function AddMission() {
         etat : "En cours",
         categorie : "api/categories/" + data.categorie,
         autoEvaluation : "",
-        user : ["api/users/" + session.user.id],
+        user : ["api/users/" + data.child],
+        creator : "api/users/" + session.user.id,
         date : data.date,
         points : parseInt(data.points)
       })
@@ -74,7 +90,6 @@ export default function AddMission() {
         setInfoMessage(value.message)
       })
     },(error) =>{
-      console.log(error)
       setErrorMessage(error)
     })
   }
@@ -139,6 +154,22 @@ export default function AddMission() {
           </Form.Control>
         </Form.Field>
 
+        <Form.Field className={styles.field}>
+          <Form.Label>Enfant</Form.Label>
+          <Form.Control>
+            <Form.Select   name="child"
+                           color="primary"
+                           type="text"
+                           >
+
+              {children.map((child) => {
+                return (
+                    <option key={child.id} value={child.id}>{child.firstName} {child.lastName}</option>
+                );
+              })}
+            </Form.Select>
+          </Form.Control>
+        </Form.Field>
 
         <Form.Field className={styles.field}>
           <Form.Control>
@@ -180,4 +211,4 @@ export default function AddMission() {
 AddMission.getLayout = function getLayout(page) {
   return <LayoutHome>{page}</LayoutHome>;
 };
-AddMission.auth = false;
+AddMission.auth = true;

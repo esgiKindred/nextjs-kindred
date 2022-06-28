@@ -66,7 +66,6 @@ export default function AddChild() {
         setInfoMessage(value.message)
       })
     },(error) =>{
-      console.log(error)
       setErrorMessage(error)
     })
   }
