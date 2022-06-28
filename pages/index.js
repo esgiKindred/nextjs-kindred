@@ -30,8 +30,6 @@ export default function Dashboard() {
     fetchData();
   }, [session.user.id]);
 
-  console.log(session);
-
   return (
     <div>
       <h1>
