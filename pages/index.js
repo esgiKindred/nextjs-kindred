@@ -1,48 +1,31 @@
 import { LayoutHome } from "../components/layout-home/layout-home";
-import { Button, Form } from "react-bulma-components";
 import { useSession } from "next-auth/react";
 import CardPoint from "../components/card-point/card-point";
 import { useEffect, useState } from "react";
+import {GetMissionByUserId, GetUserBy} from "../swr/service";
 export default function Dashboard() {
-  const [userInformation, setUserInformation] = useState({
-    kins: "-",
-    pointsBonus: "-",
-    lastName: "-",
-    firstName: "-",
-  });
+
 
   const { data: session, status } = useSession();
+  console.log(session);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      const response = await fetch(
-        "http://127.0.0.1:8000/api/" + "users/" + session.user.id,
-        {
-          headers: {
-            Accept: "application/json",
-          },
-        }
-      );
-      const newData = await response.json();
-      setUserInformation(newData);
-    };
-
-    fetchData();
-  }, [session.user.id]);
+  const { data : userData, error : userError } = GetUserBy(session.user.id)
+    if (userError) return <h1>Something went wrong!</h1>
+    if (!userData) return <h1>Loading...</h1>
 
   return (
     <div>
       <h1>
-        Bienvenue {userInformation.firstName} {userInformation.lastName}
+        Bienvenue {userData.firstName} {userData.lastName}
       </h1>
       <CardPoint
         title={"Total des points"}
-        points={userInformation.kins + " Kin's"}
+        points={userData.kins + " Kin's"}
         type={'kins'}
       ></CardPoint>
       <CardPoint
         title={"Total des points bonus"}
-        points={userInformation.pointsBonus + " bonus"}
+        points={userData.pointsBonus + " bonus"}
         type={'bonus'}
       ></CardPoint>
     </div>
