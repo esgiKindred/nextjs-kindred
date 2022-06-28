@@ -5,35 +5,20 @@ import enfant from "../../assets/images/enfant1.png";
 import Image from "next/image";
 import {useEffect, useState} from "react";
 import {useSession} from "next-auth/react";
+import {GetFromUri, GetMissionByUserId} from "../../swr/service";
 
 export default function CardMissionsParent({mission}) {
 
-    const [categorie, setCategorie] = useState({nom : "chargement",couleur :'white'});
-    const [user, setUser] = useState({firstname : "----",lastname : '----'});
 
-    useEffect(() => {
-        const fetchCategorie = async () => {
-            const response = await getFromUri(mission.categorie)
-            const newData = await response.json();
-            setCategorie(newData);
-        };
-        fetchCategorie();
+    const { data : categorieData, error : categorieError } = GetFromUri(mission.categorie)
+    const { data : userData, error : userError } = GetFromUri(mission.user)
 
-        const fetchUser = async () => {
-            const response = await getFromUri(mission.user)
-            const newData = await response.json();
-            setUser(newData);
-        };
-        fetchUser();
-
-    }, [setCategorie,setUser]);
 
   return (
     <div className={styles.card}>
       <h3>{mission.titre}</h3>
-
       <div className={style.CategorieEtat}>
-        <p className={styles.category} style={{backgroundColor : categorie.couleur}} >{categorie.nom}</p>
+          { (categorieError || !categorieData) ?  <p className={styles.category}>-</p> : <p className={styles.category} style={{backgroundColor : categorieData.couleur}} >{categorieData.nom}</p>}
         <p className={styles.state}>{mission.etat}</p>
       </div>
 
@@ -46,22 +31,14 @@ export default function CardMissionsParent({mission}) {
       <div className={styles.listHorizontal}>
         <p>Assigné à :</p>
         <Image src={enfant} alt="logo" />
-        <p> {user.firstName}  {user.lastName}</p>
+          { (userError || !userData) ?  <p>-</p> : <p> {userData.firstName}  {userData.lastName}</p>
+          }
       </div>
       <p>Date limite : {mission.date}</p>
     </div>
   );
 
-  async function getFromUri(uri){
-      return  fetch(
-          "http://127.0.0.1:8000" + uri ,
-          {
-              headers: {
-                  Accept: "application/json",
-              },
-          }
-      );
-  }
+
 
 
 
