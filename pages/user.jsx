@@ -63,17 +63,15 @@ export default function Contract() {
         </h2>
         <span>{userInformation.email}</span>
       </Block>
-      <Block className={styles.children}>
+      <Block className={styles.parent}>
         <h3>Enfant de :</h3>
-        <Block>
+        <Block className={styles.parent_block}>
           {parentInformation.map((parent) => {
             return (
-              <div className="d-flex justify-content-center" key={parent.id}>
-                <span>
-                  <Circle />
-                  {parent.lastName} {parent.firstName}
-                </span>
-              </div>
+              <span key={parent.id}>
+                <Circle />
+                {parent.lastName} {parent.firstName}
+              </span>
             );
           })}
         </Block>
