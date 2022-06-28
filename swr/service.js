@@ -46,6 +46,19 @@ export function GetUsers () {
         isError: error
     }
 }
+
+export function GetChildrens (id) {
+    console.log(id)
+    const { data, error } = useSWR(apiUrl + "/api/users?parent=" + id, fetcher)
+
+    return {
+        data: data,
+        isLoading: !error && !data,
+        isError: error
+    }
+}
+
+
 export function GetUserBy (id) {
     const { data, error } = useSWR(apiUrl + "/api/users/" + id, fetcher)
 

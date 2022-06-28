@@ -11,6 +11,7 @@ import { useRouter } from "next/router";
 import BackButton from "../components/buttons/back-button";
 import { useEffect, useState } from "react";
 import { useSession } from "next-auth/react";
+import {GetCategories, GetChildrens} from "../swr/service";
 
 export default function AddMission() {
   const router = useRouter();
@@ -18,28 +19,17 @@ export default function AddMission() {
 
   const [errorMessage, setErrorMessage] = useState(false);
   const [infoMessage, setInfoMessage] = useState(false);
+  const { data: session } = useSession();
 
-  const [categories, setCategories] = useState([]);
+  const { data : categoriesData, error : categoriesError } = GetCategories()
+  const { data : childrensData, error : childrensError } = GetChildrens(session.user.id)
 
-  const { data: session, status } = useSession();
 
-  useEffect(() => {
-    const fetchData = async () => {
-      const response = await fetch(
-        "http://127.0.0.1:8000/api/" + "categories",
-        {
-          headers: {
-            Accept: "application/json",
-          },
-        }
-      );
-      const newData = await response.json();
-      // console.log(newData);
-      setCategories(newData);
-    };
+  console.log(childrensData)
 
-    fetchData();
-  }, [session.user.id]);
+  if (categoriesError || childrensError) return <h1>Something went wrong!</h1>;
+  if (!categoriesData || !childrensData) return <h1>Loading...</h1>;
+
 
   function handleSubmit(event) {
     event.preventDefault();
@@ -124,7 +114,7 @@ export default function AddMission() {
           <Form.Label>Categorie</Form.Label>
           <Form.Control>
             <Form.Select name="categorie" color="primary" type="text">
-              {categories.map((categorie) => {
+              {categoriesData.map((categorie) => {
                 return (
                   <option key={categorie.id} value={categorie.id}>
                     {categorie.nom}
@@ -143,7 +133,7 @@ export default function AddMission() {
                            type="text"
                            >
 
-              {children.map((child) => {
+              {childrensData.map((child) => {
                 return (
                     <option key={child.id} value={child.id}>{child.firstName} {child.lastName}</option>
                 );
