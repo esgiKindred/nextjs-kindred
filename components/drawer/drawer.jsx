@@ -20,11 +20,6 @@ export class Drawer extends Component {
           </span>
 
           <MenuLink routeDestination="/" routeName="Dashboard" drawerState={this.state.open}></MenuLink>
-          <MenuLink routeDestination="/user" routeName="Profil"></MenuLink>
-          <MenuLink
-            routeDestination="/user-parent"
-            routeName="Profil Parent"
-          ></MenuLink>
           <MenuLink routeDestination="/contract" routeName="Contrat"></MenuLink>
           <MenuLink routeDestination="/mission" routeName="Mission"></MenuLink>
           <MenuLink
