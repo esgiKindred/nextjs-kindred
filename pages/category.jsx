@@ -19,9 +19,9 @@ export default function Category() {
   if (!categoriesData) return <h1>Loading...</h1>
 
   function Delete(id) {
-      fetch('http://127.0.0.1:8000/api/categories/' + id,{ method: 'DELETE'
+      fetch(process.env.SYMFONY_API + id,{ method: 'DELETE'
       }).then(() =>{
-        mutate('http://127.0.0.1:8000/api/categories')
+        mutate(process.env.SYMFONY_API + '/api/categories')
       },(error) =>{
         console.log(error);
         categoriesError(error);

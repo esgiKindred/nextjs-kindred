@@ -23,7 +23,7 @@ export default NextAuth({
                 // e.g. return { id: 1, name: 'J Smith', email: 'jsmith@example.com' }
                 // You can also use the `req` object to obtain additional parameters
                 // (i.e., the request IP address)
-                const res = await fetch(process.env.SYMFONY_API + "login_check", {
+                const res = await fetch(process.env.REACT_APP_SYMFONY_API + "/api/login_check", {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",
@@ -33,7 +33,6 @@ export default NextAuth({
                     cache: "default",
                     body: JSON.stringify(credentials),
                 })
-                console.log('authorize')
                 const user = await res.json()
                 //const user = {token : "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE2NTQ4MDg5MTUsImV4cCI6MTY1NDgxMjUxNSwicm9sZXMiOlsicGFyZW50IiwiUk9MRV9VU0VSIl0sInVzZXJuYW1lIjoidGNoaTJAaWNsb3VkLmNvbSJ9.myQOUKYmDQ9dATP502xsYLRGgStEt22BPNeoRqDlQtUmfwbo6VrSZgULskZeWdgvqGS7DjZR5Jg--PPz9jXLdmkqGVgaXq2Qf9PRb5f8Zz7Vs5HI0j2IIlEFrK26IxgBFa0oQYd9XI4_qimaXxTgDDqJL7gXaNoNByw3Gx5e8zYdVuJ1JxESVtCRlOGDZl7VinjXJ8VdXJ_vcqlkrq3a3EhLkK5J-gtkkgSox8DfBKZyx3s_4sa7GZ3v5rtO4ica6e1h0b7BNmci9BE37Y-miMfDClFafqZzUub94vzJDuDCMUrMbGWNUSxY1KLczAR8ADxtV5OfrlGpDG94p8zFiA"}
                 // If no error and we have user data, return it
