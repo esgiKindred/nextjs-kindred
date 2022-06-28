@@ -5,32 +5,15 @@ import Link from "next/link";
 import CardMissionsParent from "../components/card-missions-parent/card-missions-parent";
 import { useEffect, useState } from "react";
 import { useSession } from "next-auth/react";
+import {GetMissionByUserId} from "../swr/service";
 
 export default function Mission() {
 
-
-  const [missions, setMissions] = useState([]);
-
   const { data: session } = useSession();
-  useEffect(() => {
-    const fetchData = async () => {
-      const response = await fetch(
-        "http://127.0.0.1:8000/api/" + "missions?user=" + session.user.id,
-        {
-          headers: {
-            Accept: "application/json",
-          },
-        }
-      );
-      const newData = await response.json();
-      setMissions(newData);
+  const { data : missionsData, error : missionsError } = GetMissionByUserId(session.user.id)
 
-    };
-
-    fetchData();
-  }, [session.user.id]);
-
-
+    if (missionsError) return <h1>Something went wrong!</h1>
+    if (!missionsData) return <h1>Loading...</h1>
 
   return (
     <Container className={styles.main}>
@@ -53,11 +36,12 @@ export default function Mission() {
       </Columns>
       <Columns centered={true}>
 
-            {missions.map((mission) => {
+          {missionsData.map((mission) => {
               return (
-              <CardMissionsParent key={mission.id} mission={mission}/>
+                  <CardMissionsParent key={mission.id} mission={mission}/>
               )
-            })}
+          })
+          }
       </Columns>
 
     </Container>
