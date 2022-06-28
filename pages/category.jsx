@@ -3,34 +3,31 @@ import styles from "../styles/Home.module.css";
 import { LayoutHome } from "../components/layout-home/layout-home";
 import Link from "next/link";
 import BackButton from "../components/buttons/back-button";
-import {useEffect, useState} from "react";
+import {DeleteCategory, GetCategories} from "../swr/service";
+import {useState} from "react";
+import {useSWRConfig} from "swr";
 
 
 export default function Category() {
-  const [categories, setCategories] = useState([]);
-  const [refresh, setRefresh] = useState(false);
 
-  const [errorMessage, setErrorMessage] = useState(false);
+  const { data : categoriesData, error : categoriesError } = GetCategories()
 
-  useEffect(() => {
-
-    const fetchData = async () => {
-      const response = await fetch(
-          "http://127.0.0.1:8000/api/" + "categories",
-          {
-            headers: {
-              Accept: "application/json",
-            },
-          }
-      )
-
-      const newData = await response.json();
-      setCategories(newData);
-    };
-  fetchData();
-  },[setCategories,refresh])
+  const { mutate } = useSWRConfig()
 
 
+  if (categoriesError) return <h1>Something went wrong!</h1>
+  if (!categoriesData) return <h1>Loading...</h1>
+
+  function Delete(id) {
+      fetch('http://127.0.0.1:8000/api/categories/' + id,{ method: 'DELETE'
+      }).then(() =>{
+        mutate('http://127.0.0.1:8000/api/categories')
+      },(error) =>{
+        console.log(error);
+        categoriesError(error);
+      })
+
+  }
 
   return (
     <Container className={styles.main}>
@@ -47,16 +44,16 @@ export default function Category() {
           </Link>
         </Columns.Column>
       </Columns>
-      { errorMessage ?
+      { categoriesError ?
           <Notification color={"danger"}>
-            {errorMessage}
+            {categoriesError.body}
           </Notification>
           : null
       }
       <Columns className={styles.cards}>
 
         {
-          categories.map((categorie) => {
+          categoriesData.map((categorie) => {
             return(
             <div  key={categorie.id} className={styles.card} style={{backgroundColor : categorie.couleur}} >
               <h3>{categorie.nom}</h3>
@@ -66,7 +63,7 @@ export default function Category() {
                   Modifier
                 </Button>
                 </Link>
-                <Button className={styles.submit} color="danger" type="submit" onClick={() =>{deleteCategory(categorie.id)}}>
+                <Button className={styles.submit} color="danger" type="submit" onClick={() => Delete(categorie.id)}>
                   Supprimer
                 </Button>
               </div>
@@ -82,15 +79,7 @@ export default function Category() {
   );
 
 
-  function deleteCategory(id){
-    fetch('http://127.0.0.1:8000/api/categories/' + id,{ method: 'DELETE'
-    }).then(() =>{
-      setRefresh(!refresh)
-    },(error) =>{
-      console.log(error);
-      setErrorMessage(error);
-    })
-  }
+
 }
 
 Category.getLayout = function getLayout(page) {
