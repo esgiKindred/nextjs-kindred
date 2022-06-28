@@ -7,6 +7,12 @@
   font-weight: normal;
 }
 
+@font-face {
+  font-family: Orkney;
+  src: local("Orkney"), local("Orkney"), url(../fonts/orkney-regular.otf);
+  font-weight: normal;
+}
+
 :root {
   --primary: #038c7f;
   --primary-dark: #025959;
@@ -35,6 +41,7 @@
 .icon {
   width: fit-content;
   height: fit-content;
+
 }
 
 .App-Header {
@@ -55,6 +62,8 @@
   border-top-left-radius: 50px;
   border-top-right-radius: 50px;
   padding: 50px;
+  -webkit-box-shadow: 0px 0px 50px 3px rgba(0,0,0,0.1);
+  box-shadow: 0px 0px 50px 3px rgba(0,0,0,0.1);
 }
 
 body {
@@ -149,6 +158,10 @@ button.is-link:hover {
 }
 
 /*quelques classe utilitaires repris de bootstrap */
+
+.position-absolute{
+  position: absolute;
+}
 
 .w-25 {
   width: 25% !important;

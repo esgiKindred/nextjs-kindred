@@ -1,43 +1,38 @@
-import { Component } from "react";
+import {Component, useState} from "react";
 import { MenuLink } from "../menu-link/menu-link";
-import styles from "./drawer.module.css";
-import Link from "next/link";
+import style from "./drawer.module.css";
 
-export class Drawer extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      open: false,
-    };
-  }
+export default function Drawer() {
 
-  render() {
-    if (this.state.open) {
+const [open,setOpen] = useState(false)
+
+    if (open) {
       return (
-        <div className={styles.drawer}>
-          <span onClick={() => this.setState({ open: false })} className="icon">
-            <i className="bi bi-x-circle"></i>
-          </span>
-
-          <MenuLink routeDestination="/" routeName="Dashboard" drawerState={this.state.open}></MenuLink>
-          <MenuLink routeDestination="/contract" routeName="Contrat"></MenuLink>
-          <MenuLink routeDestination="/mission" routeName="Mission"></MenuLink>
-          <MenuLink
-            routeDestination="/rewards"
-            routeName="Recompenses"
-          ></MenuLink>
-          <MenuLink
-            routeDestination="/rewards-parent"
-            routeName="Recompense Parent"
-          ></MenuLink>
-        </div>
+                <div className={style.drawer} onClick={() => setOpen(false)} >
+                    <div className={style.content}>
+                      <span  className="icon">
+                        <i className="bi bi-x-circle"></i>
+                        </span>
+                <MenuLink routeDestination="/" routeName="Dashboard"></MenuLink>
+                <MenuLink routeDestination="/contract" routeName="Contrat"></MenuLink>
+                <MenuLink routeDestination="/mission" routeName="Mission"></MenuLink>
+                <MenuLink
+                    routeDestination="/rewards"
+                    routeName="Recompenses"
+                ></MenuLink>
+                <MenuLink
+                    routeDestination="/rewards-parent"
+                    routeName="Recompense Parent"
+                ></MenuLink>
+                    </div>
+            </div>
       );
     } else {
       return (
-        <span onClick={() => this.setState({ open: true })} className="icon">
+        <span  className="icon position-absolute" onClick={() => setOpen(true)}>
           <i className="bi bi-list"></i>
         </span>
       );
     }
-  }
+
 }
