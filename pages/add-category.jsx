@@ -4,6 +4,7 @@ import { LayoutHome } from "../components/layout-home/layout-home";
 import { useRouter } from "next/router";
 import BackButton from "../components/buttons/back-button";
 import {useState} from "react";
+import {router} from "next/client";
 
 export default function AddCategory() {
   const {query} = useRouter();
@@ -38,9 +39,13 @@ export default function AddCategory() {
         couleur : data.couleur,
       })
     }).then((response) =>{
-      response.json().then(value =>{
-        setInfoMessage(value.message)
-      })
+      console.log(response)
+      if (response.status == 201){
+        setInfoMessage("Catégorie crée avec success")
+        setTimeout(() =>{
+          router.back()
+        },1000)
+      }
     },(error) =>{
       console.log(error)
       setErrorMessage(error)

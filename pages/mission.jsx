@@ -5,7 +5,7 @@ import Link from "next/link";
 import CardMissions from "../components/card-missions/card-missions";
 import { useEffect, useState } from "react";
 import { useSession } from "next-auth/react";
-import { GetMissionByUserId } from "../swr/service";
+import {GetMissionByUserId} from "../swr/service";
 
 export default function Mission() {
   const { data: session } = useSession();
@@ -17,7 +17,11 @@ export default function Mission() {
   if (missionsError) return <h1>Something went wrong!</h1>;
   if (!missionsData) return <h1>Loading...</h1>;
 
-  return (
+
+
+
+
+    return (
     <Container className={styles.main}>
       <Columns>
         <Columns.Column size={8} className={styles.title}>

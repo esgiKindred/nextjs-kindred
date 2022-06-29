@@ -22,7 +22,7 @@ export default function RewardsParent() {
 
       <Columns className={styles.cards}>
         <Columns.Column className={styles.card}>
-          <h3>Coucou c'est moi</h3>
+          <h3>Coucou c&apos;est moi</h3>
           <p>Je suis une description</p>
           <p className={styles.points}>50 points</p>
           <div className={styles.listHorizontal}>
@@ -35,7 +35,7 @@ export default function RewardsParent() {
           </div>
         </Columns.Column>
         <Columns.Column className={styles.card}>
-          <h3>Coucou c'est moi</h3>
+          <h3>Coucou c&apos;est moi</h3>
           <p>Je suis une description</p>
           <p className={styles.points}>50 points</p>
           <div className={styles.listHorizontal}>
@@ -48,7 +48,7 @@ export default function RewardsParent() {
           </div>
         </Columns.Column>{" "}
         <Columns.Column className={styles.card}>
-          <h3>Coucou c'est moi</h3>
+          <h3>Coucou c&apos;est moi</h3>
           <p>Je suis une description</p>
           <p className={styles.points}>50 points</p>
           <div className={styles.listHorizontal}>

@@ -10,7 +10,7 @@ export default function Rewards() {
 
       <Columns className={styles.cards}>
         <Columns.Column className={styles.card}>
-          <h3>Coucou c'est moi</h3>
+          <h3>Coucou c&apos;est moi</h3>
           <p>Je suis une description</p>
 
           <div className={styles.listHorizontal}>
@@ -21,7 +21,7 @@ export default function Rewards() {
           </div>
         </Columns.Column>
         <Columns.Column className={styles.card}>
-          <h3>Coucou c'est moi</h3>
+          <h3>Coucou c&apos;est moi</h3>
           <p>Je suis une description</p>
 
           <div className={styles.listHorizontal}>
@@ -32,7 +32,7 @@ export default function Rewards() {
           </div>
         </Columns.Column>
         <Columns.Column className={styles.card}>
-          <h3>Coucou c'est moi</h3>
+          <h3>Coucou c&apos;est moi</h3>
           <p>Je suis une description</p>
 
           <div className={styles.listHorizontal}>

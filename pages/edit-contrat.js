@@ -100,7 +100,7 @@ export default function EditContract() {
                 <Form.Field className={styles.field}>
                     <Form.Control>
                         <Form.Label>
-                            Signé par l'enfant
+                            Signé par l&apos;enfant
                         </Form.Label>
                         <Form.Checkbox
                             name="signatureEnfant"

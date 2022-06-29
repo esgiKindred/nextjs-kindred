@@ -1,4 +1,4 @@
-import { Form, Container, Button } from "react-bulma-components";
+import {Form, Container, Button, Notification} from "react-bulma-components";
 import styles from "../styles/Home.module.css";
 import { LayoutHome } from "../components/layout-home/layout-home";
 import { useRouter } from "next/router";

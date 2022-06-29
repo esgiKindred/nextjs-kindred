@@ -3,15 +3,25 @@ import style from "./card-missions.module.css";
 import { Columns, Button } from "react-bulma-components";
 import enfant from "../../assets/images/enfant1.png";
 import Image from "next/image";
-import { useEffect, useState } from "react";
-import { useSession } from "next-auth/react";
-import { GetFromUri, GetMissionByUserId } from "../../swr/service";
+
+import {apiUrl, GetFromUri} from "../../swr/service";
+import {mutate} from "swr";
 
 export default function CardMissions({ mission, role }) {
   const { data: categorieData, error: categorieError } = GetFromUri(
     mission.categorie
   );
   const { data: userData, error: userError } = GetFromUri(mission.user);
+
+
+    function Delete(id) {
+        fetch(apiUrl  + '/api/missions/' + id,{ method: 'DELETE'
+        }).then(() =>{
+            mutate(apiUrl + "/api/missions?creator=" + id)
+        },(error) =>{
+            console.log(error);
+        })
+    }
 
   return (
     <div className={styles.card}>
@@ -21,7 +31,7 @@ export default function CardMissions({ mission, role }) {
         </Columns.Column>
         {role == "parent" ? (
           <Columns.Column size={4} className={styles.boutons}>
-            <Button className={styles.bouton} type="button" color="primary">
+            <Button className={styles.bouton} type="button" color="primary" onClick={() => Delete(mission.id)}>
               Supprimer
             </Button>
           </Columns.Column>
